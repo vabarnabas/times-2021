@@ -3,14 +3,16 @@ import './App.css';
 import 'firebase/compat/auth';
 
 //Import Resources
-import timesLogo from './Resources/times_logo.svg';
 import timesLogoBW from './Resources/times_logo_bw.svg';
 
 //Import Components
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getAuth, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 //Firebase Config
 const firebaseConfig = {
@@ -35,6 +37,17 @@ function App() {
   if (user) console.log(user)
   return (
     <div className="bg-primary h-screen relative w-screen">
+          <ToastContainer
+          position="top-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          />
       <section>
         {user ? <Site /> : <SignIn />}
       </section>
@@ -45,11 +58,26 @@ function App() {
 function Site() {
   const[user] = useAuthState(auth);
 
+  const onSignOut = () => {
+    toast.success('Sikeres kijelentkezés!', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+      signOut(auth);
+  }
+
   return (
-      <div className="flex justify-end items-center bg-secondary py-2 pr-5">
-        <img alt="" src={timesLogo} className="h-3 pl-5 mr-auto"/>
-        <h1 className="text-white text-xs hidden sm:text-md sm:block">{user ? user.email : ''}</h1>
-        <button className="bg-white px-2 ml-4 hover:bg-gray-200 text-sm" onClick={() => signOut(auth)} >Kijelentkezés</button>
+      <div className="flex justify-end items-center bg-white py-2 pr-5 shadow">
+
+
+        <img alt="" src={timesLogoBW} className="h-3 pl-5 mr-auto"/>
+        <h1 className="text-secondary text-xs hidden sm:text-md sm:block">{user ? user.email : ''}</h1>
+        <button className="bg-estiemGreen py-1 text-white px-3 ml-4 hover:bg-estiemGreenHover text-sm rounded" onClick={onSignOut} >Kijelentkezés</button>
       </div>
   );
 }
@@ -70,7 +98,30 @@ function SignIn() {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(error.code)
       onError();
+      if (error.code == 'auth/user-not-found') {
+        toast.error('Ismeretlen e-mail cím!', {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      }
+      if (error.code == 'auth/wrong-password') {
+        toast.error('Hibás jelszó!', {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      }
     });
   }
 
@@ -79,21 +130,18 @@ function SignIn() {
     if (email) {
     sendPasswordResetEmail(auth, email)
     .then(() => {
-    // Password reset email sent!
-    // ..
+
     })
    .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // ..
   });
   }
   }
 
-
-
   return (
     <div className="flex justify-center items-center h-screen flex-col">
+      
       <div className="flex flex-col justify-center items-center">
         <img src={timesLogoBW} alt="" className="h-4 mb-1" />
         <p className="text-4xl text-secondary mb-6 font-semibold">Bejelentkezés</p>
