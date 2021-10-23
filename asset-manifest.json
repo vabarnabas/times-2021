@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/times-2021/static/css/main.592bf1f4.chunk.css",
+    "main.js": "/times-2021/static/js/main.eeb3facd.chunk.js",
+    "main.js.map": "/times-2021/static/js/main.eeb3facd.chunk.js.map",
+    "runtime-main.js": "/times-2021/static/js/runtime-main.7fb83b33.js",
+    "runtime-main.js.map": "/times-2021/static/js/runtime-main.7fb83b33.js.map",
+    "static/js/2.fcab8348.chunk.js": "/times-2021/static/js/2.fcab8348.chunk.js",
+    "static/js/2.fcab8348.chunk.js.map": "/times-2021/static/js/2.fcab8348.chunk.js.map",
+    "static/js/3.7cb6c210.chunk.js": "/times-2021/static/js/3.7cb6c210.chunk.js",
+    "static/js/3.7cb6c210.chunk.js.map": "/times-2021/static/js/3.7cb6c210.chunk.js.map",
+    "index.html": "/times-2021/index.html",
+    "static/css/main.592bf1f4.chunk.css.map": "/times-2021/static/css/main.592bf1f4.chunk.css.map",
+    "static/js/2.fcab8348.chunk.js.LICENSE.txt": "/times-2021/static/js/2.fcab8348.chunk.js.LICENSE.txt",
+    "static/media/times_logo.984875f3.svg": "/times-2021/static/media/times_logo.984875f3.svg",
+    "static/media/times_logo_bw.f1a15517.svg": "/times-2021/static/media/times_logo_bw.f1a15517.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7fb83b33.js",
+    "static/js/2.fcab8348.chunk.js",
+    "static/css/main.592bf1f4.chunk.css",
+    "static/js/main.eeb3facd.chunk.js"
+  ]
+}
