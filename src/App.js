@@ -129,6 +129,15 @@ function SignIn() {
     e.preventDefault();
     if (email) {
     sendPasswordResetEmail(auth, email)
+    toast.info('Emlékeztetető küldve a ' + email + ' címre!', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      })
     .then(() => {
 
     })
