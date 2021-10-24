@@ -6,13 +6,14 @@ import 'firebase/compat/auth';
 import timesLogoBW from './Resources/times_logo_bw.svg';
 
 //Import Components
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getAuth, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form from './Components/Form';
+import Splash from './Components/Splash'
 
 
 //Firebase Config
@@ -33,8 +34,17 @@ const auth = getAuth(firebaseApp);
 
 //Base Function
 function App() {
-  //Authentication
+  //Variables
+  const[splash, setSplash] = useState(false);
   const[user] = useAuthState(auth);
+
+
+  useEffect(() => {
+    setSplash(true);
+    setTimeout(() => {
+      setSplash(false);
+    }, 1000);
+  }, []);
 
   return (
     <div className="bg-primary h-screen relative w-screen">
@@ -50,7 +60,7 @@ function App() {
           pauseOnHover
           />
       <section>
-        {user ? <Site /> : <SignIn />}
+        {splash ? <Splash /> : (user ? <Site /> : <SignIn />)}
       </section>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Form = () => {
-
+const Form = (props) => {
+    console.log(props)
     return (
         <div className="">
             <p className="text-secondary pt-20 text-2xl font-bold text-center mb-10 sm:text-4xl">Csapat Értékelése</p>
